@@ -6,14 +6,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Unzip the project if it was uploaded as a zip
         run: |
           if [ ! -f settings.gradle ]; then
             Z=$(ls *.zip | head -1)
             unzip -o "$Z" -d .
           fi
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 17
@@ -21,7 +21,16 @@ jobs:
         with:
           gradle-version: 8.9
       - name: Build APK
-        run: gradle assembleDebug --no-daemon
+        run: |
+          set -o pipefail
+          gradle assembleDebug --no-daemon --stacktrace 2>&1 | tee build.log
+      - name: Show build errors
+        if: failure()
+        run: |
+          grep -nE "What went wrong|error:|ERROR|e: |FAILED|Could not|Caused by|AAPT|^> |^  > " build.log | grep -v "^.*at " | head -60 > err.txt || true
+          [ -s err.txt ] || tail -60 build.log > err.txt
+          msg=$(sed -e 's/%/%25/g' -e 's/\r//g' err.txt | awk '{printf "%s%%0A", $0}')
+          echo "::error title=Gradle build failed::$msg"
       - uses: actions/upload-artifact@v4
         with:
           name: RuhulsEngine-apk
