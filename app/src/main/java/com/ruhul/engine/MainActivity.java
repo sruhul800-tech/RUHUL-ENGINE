@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
 
         CookieManager cm = CookieManager.getInstance();
         cm.setAcceptCookie(true);
-        cm.setAcceptThirdPartyCookie(web, true);
+        cm.setAcceptThirdPartyCookies(web, true);
 
         script = buildScript();
         web.addJavascriptInterface(new Bridge(), "RuhulBridge");
