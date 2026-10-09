@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ruhuls Engine</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+:root{--ink:#15111c;--lac:#221a2c;--gold:#e8c77b;--gold2:#b98a3e;--txt:#f4efe6;--mut:#a69db2;--dim:#6f6680;--loss:#ff5a6e;--big:#f39a4c;--sml:#4d8ef7}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ink);color:var(--txt);font-family:'Manrope',system-ui,-apple-system,Roboto,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+body{min-height:100vh;background:radial-gradient(90% 45% at 50% 0%,rgba(232,199,123,.14),transparent 70%),var(--ink);padding:28px 22px 32px;display:flex;flex-direction:column}
+.d{font-family:'Unbounded','Manrope',system-ui,sans-serif}
+.brand{display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:18px}
+.dial{position:relative;width:132px;height:132px}
+.dial svg{position:absolute;inset:0;width:132px;height:132px}
+.tk{stroke:rgba(232,199,123,.3);stroke-width:1.3;stroke-linecap:round}.tk5{stroke:var(--gold);stroke-width:2.2;stroke-linecap:round}
+.arc{fill:none;stroke:url(#g);stroke-width:5;stroke-linecap:round;transform:rotate(-90deg);transform-origin:66px 66px;stroke-dasharray:314;stroke-dashoffset:314;animation:sweep 1.4s cubic-bezier(.3,.7,.2,1) .2s forwards}
+@keyframes sweep{to{stroke-dashoffset:78}}
+.av{position:absolute;inset:26px;border-radius:50%;padding:3px;background:conic-gradient(from 200deg,var(--gold),var(--gold2),#f7e3b0,var(--gold))}
+.av img{width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--lac);border:3px solid var(--ink);display:block}
+h1{font-size:22px;font-weight:700;margin-top:18px;letter-spacing:-.01em}
+.chip{display:inline-block;margin-top:9px;font-size:11px;font-weight:800;color:var(--ink);background:linear-gradient(135deg,#f7e3b0,var(--gold) 45%,var(--gold2));padding:4px 10px;border-radius:999px}
+.lead{font-size:14px;color:var(--mut);margin-top:12px;line-height:1.5;max-width:30ch}
+.open{margin-top:30px;width:100%;padding:16px;border:0;border-radius:16px;font:800 15px 'Manrope',system-ui,sans-serif;color:var(--ink);
+  background:linear-gradient(135deg,#f7e3b0,var(--gold) 50%,var(--gold2));box-shadow:0 10px 28px rgba(232,199,123,.22)}
+.open:active{transform:translateY(1px)}
+.site{margin-top:16px}
+.site label{display:block;font-size:12px;font-weight:700;color:var(--mut);margin-bottom:7px}
+.site input{width:100%;padding:13px 14px;border-radius:13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--txt);font:600 14px 'Manrope',system-ui,sans-serif;outline:none}
+.site input:focus{border-color:var(--gold)}
+.steps{list-style:none;margin-top:28px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start;padding:11px 0;border-top:1px solid rgba(255,255,255,.07);font-size:13.5px;line-height:1.5}
+.steps li::before{content:counter(s);font:700 12px 'Unbounded',system-ui,sans-serif;color:var(--gold);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(232,199,123,.45)}
+.steps b{font-weight:700}
+.steps span{color:var(--mut)}
+.risk{margin-top:22px;padding:14px 14px 14px 16px;border-radius:14px;background:rgba(255,90,110,.07);border:1px solid rgba(255,90,110,.22);font-size:12.5px;line-height:1.55;color:#e9c9cf}
+.risk b{color:var(--txt)}
+.foot{margin-top:auto;padding-top:26px;text-align:center;font-size:11px;color:var(--dim)}
+@media (prefers-reduced-motion:reduce){.arc{animation:none;stroke-dashoffset:78}}
+</style>
+</head>
+<body>
+  <div class="brand">
+    <div class="dial">
+      <svg viewBox="0 0 132 132" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7e3b0"/><stop offset=".5" stop-color="#e8c77b"/><stop offset="1" stop-color="#b98a3e"/></linearGradient></defs>
+        <g id="ticks"></g>
+        <circle cx="66" cy="66" r="50" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="5"/>
+        <circle class="arc" cx="66" cy="66" r="50"/>
+      </svg>
+      <div class="av"><img src="https://i.ibb.co/35sLddh9/image.png" alt=""></div>
+    </div>
+    <h1 class="d">Ruhuls Engine</h1>
+    <span class="chip">X5 Pro</span>
+    <p class="lead">Signals and auto bet for WinGo 30S, right inside the game.</p>
+  </div>
+
+  <button class="open" id="open">Open game</button>
+  <div class="site">
+    <label for="url">Site address</label>
+    <input id="url" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false">
+  </div>
+
+  <ol class="steps">
+    <li><div><b>Log in and open WinGo 30S.</b> <span>The panel appears on the game by itself.</span></div></li>
+    <li><div><b>Unlock the panel</b> <span>with your password and the balance you start with.</span></div></li>
+    <li><div><b>Check Settings,</b> <span>then turn on Auto bet. Keep the app open; the screen stays on while it bets.</span></div></li>
+  </ol>
+
+  <p class="risk"><b>WinGo results are random.</b> Losing every martingale step in a row takes the whole balance, and it gets more likely the longer you play. Use a demo account, and set a round limit in Settings.</p>
+
+  <p class="foot">Version 2.0</p>
+
+<script>
+(function () {
+  var g = document.getElementById('ticks'), s = '';
+  for (var i = 0; i < 30; i++) {
+    var a = i / 30 * Math.PI * 2, r1 = i % 5 ? 58 : 55, r2 = 62;
+    s += '<line class="' + (i % 5 ? 'tk' : 'tk5') + '" x1="' + (66 + r1 * Math.sin(a)) + '" y1="' + (66 - r1 * Math.cos(a)) + '" x2="' + (66 + r2 * Math.sin(a)) + '" y2="' + (66 - r2 * Math.cos(a)) + '"/>';
+  }
+  g.innerHTML = s;
+  var DEF = 'https://bdwin24.net';
+  var has = typeof RuhulBridge !== 'undefined';
+  var saved = has ? RuhulBridge.getValue('site_url') : null;
+  var inp = document.getElementById('url');
+  inp.value = saved || DEF;
+  function go() {
+    var u = (inp.value || '').trim() || DEF;
+    if (!/^https?:\/\//i.test(u)) u = 'https://' + u;
+    if (has) RuhulBridge.setValue('site_url', u);
+    location.href = u;
+  }
+  document.getElementById('open').addEventListener('click', go);
+  inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); });
+})();
+</script>
+</body>
+</html>

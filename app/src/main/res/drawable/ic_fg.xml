@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Gold dial with an R: the panel's countdown ring as the app icon -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:pathData="M54,25 A29,29 0 1,1 53.99,25"
+        android:strokeColor="#40E8C77B" android:strokeWidth="3" android:fillColor="#00000000"/>
+    <path android:pathData="M54,25 A29,29 0 1,1 25,54"
+        android:strokeColor="#FFE8C77B" android:strokeWidth="4" android:strokeLineCap="round" android:fillColor="#00000000"/>
+    <path android:pathData="M54,18 L54,21.5 M90,54 L86.5,54 M54,90 L54,86.5 M18,54 L21.5,54"
+        android:strokeColor="#FFE8C77B" android:strokeWidth="2.4" android:strokeLineCap="round"/>
+    <path android:pathData="M47,67 L47,41 L56,41 A7,7 0 0,1 56,55 L47,55 M54.5,55 L62,67"
+        android:strokeColor="#FFF4EFE6" android:strokeWidth="5" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+</vector>

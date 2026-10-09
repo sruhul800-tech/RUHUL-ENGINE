@@ -1,0 +1,28 @@
+name: Build APK
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unzip the project if it was uploaded as a zip
+        run: |
+          if [ ! -f settings.gradle ]; then
+            Z=$(ls *.zip | head -1)
+            unzip -o "$Z" -d .
+          fi
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.9
+      - name: Build APK
+        run: gradle assembleDebug --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RuhulsEngine-apk
+          path: app/build/outputs/apk/debug/*.apk
